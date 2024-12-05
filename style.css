@@ -1502,4 +1502,80 @@ body {
     .year-details {
         padding: 1.5rem 0.8rem;
     }
+}
+
+.section-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.section-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-profile {
+    position: relative;
+}
+
+.product-image-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.product-title {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.product-title h3 {
+    color: var(--light);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-title span {
+    color: var(--secondary);
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.content-message {
+    position: relative;
+    padding: 2rem;
+    background: rgba(27, 40, 56, 0.8);
+    border: 1px solid var(--secondary);
+    border-radius: 15px;
+    box-shadow: var(--neon-shadow);
+}
+
+.message-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.message-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Product Button Active State */
+.product-btn.active {
+    background: var(--secondary);
+    transform: translateY(-5px);
+    box-shadow: var(--neon-shadow);
+}
+
+.product-btn.active .btn-icon {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.product-btn.active .btn-arrow {
+    transform: translateX(5px);
 } 

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const backBtns = document.querySelectorAll('.back-btn');
     const timelineBtn = document.querySelector('.timeline-btn');
     const techStackBtns = document.querySelectorAll('.tech-stack-btn');
+    const productBtns = document.querySelectorAll('.product-btn');
 
     // Navigation function
     function navigate(targetSlide) {
@@ -23,6 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Content switching function
+    function switchContent(contentId) {
+        // Remove active class from all content sections
+        document.querySelectorAll('.section-content').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.querySelectorAll('.message-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.querySelectorAll('.product-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Add active class to selected content
+        const selectedProfile = document.querySelector(`.section-content[data-content="${contentId}"]`);
+        const selectedContent = document.querySelector(`.message-content[data-content="${contentId}"]`);
+        if (selectedProfile) selectedProfile.classList.add('active');
+        if (selectedContent) selectedContent.classList.add('active');
+
+        // Add active class to corresponding button if it exists
+        const activeButton = document.querySelector(`.product-btn[data-content="${contentId}"]`);
+        if (activeButton) activeButton.classList.add('active');
+    }
+
     // Door button click handler
     doorBtn.addEventListener('click', () => {
         setTimeout(() => {
@@ -34,6 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
     backBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             navigate(currentSlide - 1);
+            // Reset to CEO content when going back
+            if (currentSlide === 1) {
+                switchContent('ceo');
+            }
         });
     });
 
@@ -46,6 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
     techStackBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             navigate(3);
+        });
+    });
+
+    // Product buttons click handlers
+    productBtns.forEach((btn, index) => {
+        // Set data-content attribute for each button
+        const contents = ['analytics', 'automl', 'integration'];
+        btn.setAttribute('data-content', contents[index]);
+
+        btn.addEventListener('click', () => {
+            const contentId = btn.getAttribute('data-content');
+            switchContent(contentId);
         });
     });
 
