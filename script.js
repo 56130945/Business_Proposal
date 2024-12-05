@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const timelineBtn = document.querySelector('.timeline-btn');
     const techStackBtns = document.querySelectorAll('.tech-stack-btn');
     const productBtns = document.querySelectorAll('.product-btn');
+    const contentItems = document.querySelectorAll('.content-item');
 
     // Navigation function
     function navigate(targetSlide) {
@@ -314,4 +315,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize particle system
     new ParticleSystem();
+
+    // Content item click handlers
+    contentItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            // Add hover effect animation
+            item.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                item.style.transform = 'translateX(10px)';
+            }, 100);
+
+            // Navigate to corresponding section
+            setTimeout(() => {
+                switch(index) {
+                    case 0: // Company Overview
+                        navigate(1);
+                        switchContent('ceo');
+                        break;
+                    case 1: // Flagship Products
+                        navigate(1);
+                        switchContent('analytics'); // Start with first product
+                        break;
+                    case 2: // Timeline
+                        navigate(2);
+                        break;
+                    case 3: // Technology Stack
+                        navigate(3);
+                        break;
+                }
+            }, 300);
+        });
+    });
 });
