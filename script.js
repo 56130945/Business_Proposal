@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const doorBtn = document.querySelector('.door-btn');
     const backBtns = document.querySelectorAll('.back-btn');
     const timelineBtn = document.querySelector('.timeline-btn');
-    const techStackBtn = document.querySelector('.tech-stack-btn');
+    const techStackBtns = document.querySelectorAll('.tech-stack-btn');
 
     // Navigation function
     function navigate(targetSlide) {
@@ -42,9 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
         navigate(2);
     });
 
-    // Tech Stack button click handler
-    techStackBtn.addEventListener('click', () => {
-        navigate(3);
+    // Tech Stack buttons click handlers
+    techStackBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigate(3);
+        });
     });
 
     // Timeline animations
